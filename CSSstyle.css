@@ -1,0 +1,98 @@
+
+
+
+
+.title{
+    font-size:30px;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: 2px black solid;
+    
+}
+
+ul.menu{
+    margin-top:none;
+    padding:0px;
+}
+
+.menu{
+    font-size:15px;
+    padding-left:none;
+    width:300px;
+    overflow: hidden;
+    margin:none;
+    list-style: none;
+
+}
+
+.menu > li {
+    width: 100%;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    background-color: #5778ff;
+    
+}
+  
+.menu a {
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    list-style:none;
+}
+
+  
+.submenu > li {
+    line-height: 30px;
+    background-color: #94a9ff;
+    list-style: none;
+    text-align:left;
+}
+  
+.submenu {
+    height: 0; /*ul의 높이를 안보이게 처리*/
+    overflow: hidden;
+}
+
+.menu > li:hover {
+    background-color: #94a9ff;
+    transition-duration: 0.5s;
+  }
+  
+.menu > li:hover .submenu {
+    height: 90px; /*서브메뉴 li한개의 높이 30*3*/
+    transition-duration: 1s;
+
+}
+
+img {
+    margin-top:15px;
+}
+
+#context{
+    padding:15px;
+    padding-top:0px;
+    margin:15px;
+    border:1px blue solid;
+}
+
+#grid{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#disqus_thread{
+    padding:25px;
+}
+
+#item{
+    font-weight: lighter;
+
+}
+
+
+/*screen-width < 810px*/
+@media (max-width:810px) {
+    .menu{
+        width:170px;
+    }
+}

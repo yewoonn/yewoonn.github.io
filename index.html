@@ -3,68 +3,69 @@
 <html>
 
 <head>
-    <title>HTML Dictionary</title>
+    <title>Yebaaa's Dictionary</title>
     <meta charset = "utf-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="CSSstyle.css" rel="stylesheet">
 </head>
 
 
 <body>
-    <h1>HTML Dictinary from Yebaaa :]</h1>
+    <div class = "title"><h1>Dictinary from Yebaaa :]</h1></div>
 
-    <ol>
-        <h2><strong><li>What is HTML?</li></strong></h2>
-            <h3>Hyper Text Markup Language</h3>
-            : 웹 페이지를 만드는 데 사용하는 언어
-            
-        <h2><strong><li>HTML Keyword</li></strong></h2>
-            <ul>
-                <h4><li>!doctype html</li></h4>
-                : 웹페이지 브라우저에게 html 버전 제시
-
-                
-                <h4><li>p</li></h4>
-                : 단락, 태그 내부에서 Enter, Space를 하더라도 한 줄로 표현
-                <br> (p 태그 내에서 띄어쓰기를 하기 위해 pre 태그 이용)
-
-                <h4><li>pre</li></h4>
-                : 자유롭게 Enter, Tab, Space를 하기 위한 태그
-               
-                <h4><li>h1~h6</li></h4>
-                : 크기에 따른 제목 글씨체, 숫자가 커질수록 글씨가 더 커진다.
-
-                <h4><li>li</li></h4>
-                : 리스트 형태, ol과 ul의 내부에서 사용되는 자식 태그
-
-                <h4><li>ul</li></h4>
-                : 정렬되지 않은 리스트 형태로 목록 제시, li의 외부에서 사용되는 부모 태그
-                
-                <h4><li>ol</li></h4>
-                : 정렬된 리스트 형태로 자동으로 숫자 목록 제시, li의 외부에서 사용되는 부모 태그
-             
-            </ul>
+    <div id = "grid">
+        <ul class="menu">
+            <li>
+                <a href="#">HTML</a>
+                <ul class = "submenu">
+                    <li><a href="htmlDic.html" class ="item"></href><div>What is HTML?</div></a></li>
+                    <li><a href="htmlKeyword.html"  class ="item"><div>HTML Keyword</div></li>
+                    <li><a href="htmlFunction.html" class ="item"><div>HTML Function Practice</div></li>
+                </ul> 
+            </li>
+            <li>
+                <a href="#">CSS</a>
+                <ul class = "submenu">
+                    <li><a href="htmlDic.html" class ="item"></href><div>What is CSS?</div></a></li>
+                    <li><a class ="item"><div>CSS Keyword</div></li>
+                    <li><a class ="item"><div>CSS Fuction Practice</div></li>
+                </ul> 
+            </li>
+            <li>
+                <a href="#">Java Script</a>
+                <ul class = "submenu">
+                    <li><a href="htmlDic.html" class ="item"></href><div>What is Java Script?</div></a></li>
+                    <li><a class ="item"><div>Java Script Keyword</div></li>
+                    <li><a class ="item"><div>Java Script Fuction Practice</div></li>
+                </ul> 
+            </li>
+        </ul>
         
-        <h2><strong><li>HTML Function Prctice</li></strong></h2>
+        
+        
+    
+        <div id = "context">
             
             <p>
-                <h3>How to add comments</h3>
-                -> use disqus or livere for free
-                <br>
+                Hello, I am Yebaaa. I am one of the students in Dongguk Univ. My major is Computer Science Engineering. Nowadays, I am studying HTML/CSS/Java Script with Youtube 생활코딩. I already watched HTML and CSS. So, I am making a small dictionary with concepts that i have learned. Thank you for watching !!!
+                
             </p>
 
-            <p>
-                <h3>How to insert Video</h3>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/7T7r_oSp0SE?si=jEyjjJyOZctrZEcb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <br>
-                -> use iframe tag, src = URL, title = "내용", width = "너비%", height = "높이px"
-                <br>
-            </p>
+            <img src="YebaaaSea.jpg" width="100%">
             
+            <h3>Writer : Yebaaa</h3>
+
+        </div>
+
+        
+        
+
+    </div>
+
+    
 
 
-    </ol>
-
-
-
+    <hr/>
 
     <div id="disqus_thread"></div>
 <script>
