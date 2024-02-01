@@ -1,0 +1,56 @@
+body{
+    margin:0;
+}
+
+/*block level element*/
+h1{
+    font-size:45px;
+    border-bottom: 5px black solid;
+    /*display 속성으로 inline과 block을 설정 가능*/
+    padding:20px;
+    display:block;
+    margin:0px;
+    text-align: center;
+}
+
+#grid ul{
+   border-right: 5px black solid;
+   width:100px;
+   margin:0;
+    padding:30px;
+}
+li{
+    padding-right: 100px;
+}
+#grid{
+    display:grid;
+    grid-template-columns: 180px 1fr;
+
+}
+#grid #article{
+    padding-left:25px;
+    padding-right:25px;
+}
+/*screen-width < 800px*/
+@media(max-width:800px) {
+    h1{
+        font-size:30px;
+        border-bottom: none;
+    /*display 속성으로 inline과 block을 설정 가능*/
+        padding:20px;
+        display:block;
+        margin:0px;
+        text-align: center;
+    }   
+    
+    #grid{
+        display:block;
+    }
+    #grid ul{
+        border-right:none;
+        width:100px;
+        margin:0;
+        padding:30px;
+    }
+}
+                
