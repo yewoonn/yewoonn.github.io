@@ -48,31 +48,43 @@
     
         <div id = "context">
             
-                <h2><strong>2. HTML Keyword</strong></h2>
+                <h2><strong>2. CSS Keyword</strong></h2>
                     <ul>
-                        <h4><li>!doctype html</li></h4>
-                        : 웹페이지 브라우저에게 html 버전 제시
-        
+                        <h4><li>style 태그</li></h4>
+                        : CSS 형식의 언어임을 표시하는 HTML 태그
+
+
+                        <h4><li>선택자(selector)</li></h4>
+                            : CSS로 디자인할 대상에 해당하는 부분
+
+                            <p>
+                                <ol>
+                                    <li><strong>Type 선택자</strong> - html의 태그 이름에 해당하며 우선순위가 낮다.</li>
+                                    <li><strong>Class 선택자</strong> - html의 클래스 이름에 해당하며 여러 개의 요소에 같은 이름의 클래스를 지정할 수 있다. '.'을 통해 표시한다.</li>
+                                    <li><strong>ID 선택자</strong> - html의 고유 이름에 해당하며 다른 요소에 동일한 이름을 부여할 수 없다. '#'을 통해 표시한다.</li>
+                                </ol>
+                            </p>
                         
-                        <h4><li>p</li></h4>
-                        : 단락, 태그 내부에서 Enter, Space를 하더라도 한 줄로 표현
-                        <br> (p 태그 내에서 띄어쓰기를 하기 위해 pre 태그 이용)
         
-                        <h4><li>pre</li></h4>
-                        : 자유롭게 Enter, Tab, Space를 하기 위한 태그
+                        <h4><li>display 형태</li></h4>
+                        : 화면에 요소를 어떻게 드러나게 할지 결정하는 속성 <br>(각 태그에 알맞은 display 형태가 기본적으로 지정된다.)
+                            <p>
+                                <ol>
+                                    <li><strong>None</strong> - 화면에서 보이지 않는다.</li>
+                                    <li><strong>Block</strong> - 가로 한 줄을 모두 차지한다.</li>
+                                    <li><strong>Inline</strong> - 요소의 크기만큼만을 차지한다.</li>
+                                
+                                </ol>
+                            </p>
+
+
                        
-                        <h4><li>h1~h6</li></h4>
-                        : 크기에 따른 제목 글씨체, 숫자가 커질수록 글씨가 더 커진다.
+                        <h4><li>div</li></h4>
+                        : 영역을 구분해주는 역할을 하며 block 형태로 지정된다.
         
-                        <h4><li>li</li></h4>
-                        : 리스트 형태, ol과 ul의 내부에서 사용되는 자식 태그
+                        <h4><li>span</li></h4>
+                        : 영역을 구분해주는 역할을 하며 inline 형태로 지정된다.
         
-                        <h4><li>ul</li></h4>
-                        : 정렬되지 않은 리스트 형태로 목록 제시, li의 외부에서 사용되는 부모 태그
-                        
-                        <h4><li>ol</li></h4>
-                        : 정렬된 리스트 형태로 자동으로 숫자 목록 제시, li의 외부에서 사용되는 부모 태그
-                     
                     </ul>
                 
             
