@@ -165,14 +165,17 @@ input[id="check2"]:checked + label::after{
     top:-3px;
     left:-2px;
    
-  }
+}
 
 
 p{
     margin-top: 10px;
 }
 
-/*screen-width < 810px*/
+/*
+TEST
+screen-width < 800px
+*/
 @media (max-width:800px) {
     .side{
         width:170px;
