@@ -172,10 +172,7 @@ p{
     margin-top: 10px;
 }
 
-/*
-TEST
-screen-width < 800px
-*/
+
 @media (max-width:800px) {
     .side{
         width:170px;
