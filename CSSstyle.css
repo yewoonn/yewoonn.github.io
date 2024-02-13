@@ -19,7 +19,7 @@ ul.menu{
 .menu{
     font-size:15px;
     padding-left:none;
-    width:300px;
+    width:1fr;
     overflow: hidden;
     margin:none;
     list-style: none;
@@ -165,15 +165,19 @@ input[id="check2"]:checked + label::after{
     top:-3px;
     left:-2px;
    
-  }
+}
 
 
 p{
     margin-top: 10px;
 }
 
-/*screen-width < 810px*/
+
 @media (max-width:800px) {
+    .side{
+        width:170px;
+    }
+
     .menu{
         width:170px;
     }
