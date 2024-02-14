@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Practice</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+           
+        </script>
+        <script>
+
+            var Link = {
+                setColor:function(color){
+                    var alist = document.querySelectorAll('a');
+                    var i = 0;
+
+                    while(i<alist.length){
+                        alist[i].style.color = color;
+                        i++;
+                    }
+
+                }
+            }
+
+        
+
+            var Body = {
+                setColor:function(color){
+                    document.querySelector('body').style.color=color; 
+                },
+
+                setBackgroundColor:function(color){
+                    document.querySelector('body').style.backgroundColor=color;
+                }
+            };
+
+
+            function nightDayHandler(self){
+                                
+                if(self.value === 'night'){
+                    Body.setBackgroundColor('black');
+                    Body.setColor('white');
+                    self.value = 'day'
+
+                    Link.setColor('powderblue');
+                                        
+                    
+                }
+                else{
+                    Body.setBackgroundColor('white');
+                    Body.setColor('black');
+                    self.value = 'night'
+                                        
+                    Link.setColor('blue');
+
+                }
+
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <h3>How to control Web browser with JS</h3>
+        We have to check the location tag that we want to control.
+        <br>
+
+        <a href = "https://www.tistory.com/">예시 1</a>
+        <br>
+
+        <a href = "https://www.tistory.com/">예시 2</a>
+        <br>
+
+        <a href = "https://www.tistory.com/">예시 3</a>
+        <br>
+
+
+        <h3>How can find specific location of tag</h3>
+        Query Selector is the function that we use to find some exact location of tag. But, when we utilize 'querySelector' it only refers the first tag of the code. To solve this problem, we use 'querySelectorAll'. This make us to find all the tags that included with list data type.
+
+
+        <input id = "day-night" type ="button" value="night" onclick="
+            nightDayHandler(this);
+        ">
+
+        <h3>Object</h3>
+        We can organize methods and variables with object.
+
+        <h4>Create</h4>
+        <script>
+            var coworkers = {
+                "programmar" : "egoing",
+                "designer" : "leez"
+            }
+            document.write("programmar : "+coworkers.programmar+"<br>" );
+            document.write("designer : "+coworkers.designer+"<br>" );
+            coworkers.bookkeeper = "duru";
+            coworkers["data scientist"] = "me";
+            document.write("data scientist : "+coworkers["data scientist"] +"<br>" );
+        </script>
+
+        <h4>Iterate</h4>
+        <script>
+            for(var key in coworkers){
+                document.write(key+" :"+coworkers[key]+"<br>");
+            }
+        </script>
+
+        <h4>Property&Method</h4>
+        Property is a object's variable, Method is a object's function.<br>
+        <script>
+            coworkers.showAll = function(){
+                for(var key in this){
+                    document.write(key+" :"+this[key]+"<br>");
+                }
+            }
+
+            coworkers.showAll();
+        </script>
+
+        <h3>File</h3>
+        File is the biggest way to classify code. You can make other file to put common codes.
+    
+        <h3>Library&FrameWork</h3>
+        Both of them are cooperating model with others.<br>
+        Let's use jQuery library.
+        For example, $('h3').css('color', 'purple'); means we will change all of the h3 tag's color to purple.
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+           $('h3').css('color', 'purple');
+        </script>
+        
+
+    </body>
+</html>
