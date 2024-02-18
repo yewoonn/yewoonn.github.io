@@ -2,7 +2,31 @@
 
 var DayNightModeNow = "day";
 
+var Coworkers = {
+    "egoing" : "Teacher",
+    "panghwi" : "Mentor",
+    "yebaaa" : "Student",
 
+    findCoworker:function(name){
+    
+        
+        for(var key in Coworkers){
+           
+            if(key===name){
+                document.getElementById("CoworkerProfile").innerText = ">> "+key+": "+Coworkers[key];
+                break;
+            }
+           
+        }
+        
+        if(key!=name){
+            document.getElementById("CoworkerProfile").innerText = ">> 해당되는 이름이 없습니다.";
+        }
+
+
+       
+    }
+}
 
 
 
@@ -55,4 +79,13 @@ function TextChangeHandler(self){
 
     Content.printText();
 
+}
+
+function CoworkerHandler(self){
+    
+    var name = document.getElementById("coworker").value;
+   
+
+
+    Coworkers.findCoworker(name);
 }
