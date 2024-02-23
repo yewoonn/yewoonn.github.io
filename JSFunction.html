@@ -1,18 +1,37 @@
+<!doctype html>
 
+<html>
 
 <head>
     <title>Yebaaa's Dictionary</title>
-    <meta charset = "utf-8">
+    <meta charset="utf-8">
     <link href="CSSstyle.css" rel="stylesheet">
-    <script src = "style.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	<script>
+    <script type="text/javascript" src="style.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+   
+
+    <!--
+        JS와 CSS 파일 업로드 순서에 따라 충돌 우선순위 다름
+        <title>Yebaaa's Dictionary</title>
+        <meta charset = "utf-8">
+        <link href="CSSstyle.css" rel="stylesheet">
+        <script src = "style.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        
+    -->
+    
+
+
+    <script>
     $(document).ready(function(){
         
         //$('.single-photos').slick();
-        
+       
+
         $('.multiple-photos').slick({
             infinite: true,
             slidesToShow: 3,
@@ -95,13 +114,6 @@
                                 <div><img src = "YebaaaSnow.jpg" width = 200px></div>
                                 <div><img src = "예바.jpg" width = 200px></div>
                                 <div><img src = "YebaaaSea.jpg" width = 200px></div>
-                                <div><img src = "YebaaaSnow.jpg" width = 200px></div>
-                                <div><img src = "예바.jpg" width = 200px></div>
-                                <div><img src = "YebaaaSea.jpg" width = 200px></div>
-  
-
-                            </div>
-
                     
                         </p>
                     </ol>
@@ -116,3 +128,4 @@
         </div>
 </body>
 
+</html>
