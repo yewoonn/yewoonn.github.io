@@ -6,13 +6,18 @@
     <title>Yebaaa's Dictionary</title>
     <meta charset="utf-8">
     <link href="CSSstyle.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type = "text/css" href = "slick.css"/>
     <script type="text/javascript" src="style.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
-   
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="slick.js"></script>
+    
+    
 
     <!--
+         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
         JS와 CSS 파일 업로드 순서에 따라 충돌 우선순위 다름
         <title>Yebaaa's Dictionary</title>
         <meta charset = "utf-8">
@@ -27,18 +32,15 @@
 
 
     <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
         
-        //$('.single-photos').slick();
-       
-
-        $('.multiple-photos').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            centerMode : true	
-          });
-    });
+            $('.slick_sd').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                centerMode : true	
+             });
+         });
     </script>
 	
 </head>
@@ -95,7 +97,7 @@
                         출력 : <div id = "result"> </div>
                                                 
                         <li><strong>onchange</strong> : <input id = "coworker" type = "text" placeholder="검색할 이름을 적으시오." onchange="CoworkerHandler(this);"></li>
-                        egoing, panghiw, yebaaa 중 입력<div id = "CoworkerProfile"> </div>
+                        egoing, panghwi, yebaaa 중 입력<div id = "CoworkerProfile"> </div>
 
                         <li><strong>onkeydown</strong></li>
                         <input id = "keyText" type ="text" placeholder="Press Any Key" onkeydown="alert('Success!')">
@@ -110,10 +112,13 @@
                     <ol>
                         <li><strong>slick</strong></li>
                         <p>
-                            <div class="multiple-photos" style="padding-left: 100px;">
-                                <div><img src = "YebaaaSnow.jpg" width = 200px></div>
-                                <div><img src = "예바.jpg" width = 200px></div>
-                                <div><img src = "YebaaaSea.jpg" width = 200px></div>
+                            <div class="slick_sd" style="padding-left: 100px;">
+                                <div class="slick_list"><img src = "YebaaaSnow.jpg" width = 200px></div>
+                                <div class="slick_list"><img src = "예바.jpg" width = 200px></div>
+                                <div class="slick_list"><img src = "YebaaaSea.jpg" width = 200px></div>
+                                <div class="slick_list"><img src = "web.png" width = 200px></div>
+                                <div class="slick_list"><img src = "CSS.jpg" width = 200px></div>
+                                <div class="slick_list"><img src = "javascript.png" width = 200px></div>
                     
                         </p>
                     </ol>
