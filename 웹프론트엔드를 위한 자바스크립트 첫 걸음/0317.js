@@ -69,3 +69,114 @@ num = num ?? 20;
 //var는 변수 선언 완료 시 바로 메모리 할당
 //TDZ(Temporal Dead Zone) : 일시적인 사각지대로, 변수를 사용하는 것을 허용하지 않는 공간
 //>> 호이스팅 사용 자제
+
+//[함수 표현식]
+//1) 함수 선언식 - 호이스팅 O
+function print() {
+    console.log("hello");
+}
+//2) 함수 표현식 - 호이스팅 X
+let print = function(){
+    console.log("hello");
+};
+
+//화살표 함수 <- 함수 표현식을 간결히
+const print = () => {
+    console.log("hello");
+};
+
+//콜백 함수 : 다른 함수에 매개 변수로 넘겨준 함수
+function start(name, callback){
+    console.log(`안녕하세요 $(name)입니다.`);
+    callback();
+}
+
+function finish(){
+    console.log("감사");
+}
+
+start("han", finish);
+
+//[객체]
+//객체 생성
+//객체 생성자 방식으로 생성
+let person1 = new Object();
+//객체 리터럴 방식으로 생성
+let person = {
+    name: "hong",
+    age: 20,
+    etc:function() {
+        console.log("hello world");
+    },
+    pet : "cat",
+};
+
+//객체 프로퍼티 꺼내기
+//1) 점 표기법 person.age
+//2) 괄호 표기법 person["age"] -> 문자열로 표현해야, 주로 동적일 때 사용
+
+//객체 프로퍼티 추가
+person1.phone="010-2324-2323" //점 표기법
+person1["height"] = 140; //괄호 표기법
+
+//객체 프로퍼티 수정
+//const로 선언되어도 프로퍼티 수정 가능
+//but 객체의 고유ID자체는 변경 불가능
+
+//객체 프로퍼티 삭제
+delete person.pet;
+delete person[age];
+
+//객체 프로퍼티가 함수일 때
+person.print();
+person["print"]();
+//객체 프로퍼티의 값이 함수 일때 메서드 -> 객체 내부의 값에 접근 가능
+//메서드에서 객체 내부의 프로퍼티 접근은 this로
+//메서드에서는 function() 함수로 정의해야(화살표 함수에서 this 사용 불가능)
+
+//[배열]
+//배열 생성, 타입에 상관없이 넣을 수 있음
+//생성자로 배열 생성
+let arr = new Array(1,2,3); //3개의 칸에 1,2,3
+let arr1 = new Array(3);//3만큼의 크기로 설정
+//리터럴 방식, 대괄호로 배열 생성 -> 모두 배열 요소로
+let arr2 = [1,3,4];
+let arr3 =[1]; 
+
+//배열에 요소 추가 : push(), unshift()
+arr.push(4); //마지막에
+arr.unshift(0); //앞에
+
+//배열 수정
+arr[0] = 5;
+//const도 수정 가능, 객체에 해당하는 배열 자체를 수정하는 게 아니라 고유 ID 그대로 
+
+//배열 삭제
+arr.pop(); //마지막 요소 삭제
+arr.shift(); //앞 요소 삭제
+
+//배열의 길이
+arr.length
+
+//[반복문]
+//객체를 반복문으로 순회하기 위해서는 배열로 객체를 변경해줘야
+//1)Object.keys(person) - 키 값
+let newArray = Object.keys(person);
+
+for(let i=0; i<newArray.length;i++){
+    let nowKey = newArray[i];
+}
+//2) Object.values(person) - 키 값 없이 value값을 알 수 있음
+
+//3) Object.entries - 객체를 배열로 변환, ㅏkey와 value 모두 있음
+//key:0번 인덱스, value:1번 인덱스
+
+//배열의 모든 값들에 접근할 때
+for(let i of arr){
+    console.log(i);
+}
+
+//객체의 모든 값들에 접근할 때
+for(let i in person){
+    console.log(`key $(key), value $(person[key])`);
+}
