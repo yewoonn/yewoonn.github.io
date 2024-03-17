@@ -180,3 +180,59 @@ for(let i of arr){
 for(let i in person){
     console.log(`key $(key), value $(person[key])`);
 }
+
+//[배열의 내장 함수]
+
+//1) forEach() -콜백 함수
+arr.forEach((elem, idx, array)=>{
+    console.log(elem);
+});
+//매개 변수는 순서대로 배열 요소/인덱스/배열 자체
+
+//2) map() : 배열 요소/인덱스/배열 자체르 매개 변수로, 연산 한번에 - 콜백함수
+let newArray1 = arr.map((elm)=>{
+    return elm + 10;
+});
+
+//3) at() : 마지막을 -1, 인덱스로 찾기
+
+//4) includes(key, 찾기 시작할 인덱스) : 포함 여부 확인
+
+//5) indexOf() : 어느 인덱스에 있는지, 존재하지 않으면 -1, 배열이 객체일 때 찾을 수 없음
+
+//6) findIndex() - 콜백함수, 객체가 배열에 들어가 있을 때 인덱스 위치 찾기
+let idx = colors.findIndex((elem)=>elem.color =="purple")
+//순서대로 요소, 찾기 시작할 인덱스, 배열/ 처음 찾은 위치가 반환
+
+//7) find() : 찾아낸 요소 그 자체를 반환(인덱스 아님), 콜백함수
+
+//8) filter() : 조건을 만족하는 모든 요소를 반환, 콜백 함수
+
+//9) slice(begin, end) : begin부터 end -1 인덱스까지 추출
+
+//10) concat() : 배열 2개 붙이기, 배열로 이어줌
+
+//11) join("중간 문자") : 중간 문자를 넣어 문자열로 이어줌
+
+//12) sort : 오름차순으로 정렬,
+
+//내림차순 -> compare 함수를 넣어서 (콜백함수)
+const compare = (a,b) => { //a가 다음 요소
+    if(a>b) return -1; //compare의 반환이 음수이면 sort에서 순서를 바꿈
+    else if(a<b) return 1;
+    else return 0;
+};
+
+let colors = ["green", "blue", "purple"];
+colors.sort(compare);
+
+//내림차순
+const compare1 = (a,b) => {
+    return b-a;
+};
+
+//13) reduce() : 
+let sum = numbers.reduce((accumulator, currentvalue, currentindex)=>{}, 0)
+//acc는 currvalue를 누적한 반환값, currval 현재 처리할 값, curridx는 현재 인덱스, 0은 초기값
+
+//14) isArray() : 배열인지 확인, 배열이면 true
