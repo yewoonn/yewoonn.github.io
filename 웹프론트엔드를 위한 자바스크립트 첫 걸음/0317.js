@@ -72,11 +72,11 @@ num = num ?? 20;
 
 //[함수 표현식]
 //1) 함수 선언식 - 호이스팅 O
-function print() {
+function prnt() {
     console.log("hello");
 }
 //2) 함수 표현식 - 호이스팅 X
-let print = function(){
+let prnt = function(){
     console.log("hello");
 };
 
