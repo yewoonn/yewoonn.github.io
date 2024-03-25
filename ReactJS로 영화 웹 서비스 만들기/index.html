@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <!-- ReactJS : interactive하도록 만들어주는 라이브러리
+    ReactDom : 모든 React 요소를 HTML body에 둘 수 있도록 도와주는 라이브러리 -->
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root");
+        const span = React.createElement(
+            "span", 
+            {id:"span1", style:{color:"red"}}, 
+            "Hello I am a span"); //괄호 안에 span은 생성하고자 하는 HTML 태그
+        ReactDOM.render(span, root);//사용자에게 보여줌
+    </script>
+
+    <!-- ReactJS는 Javascript에서 시작하고 HTML에서 끝난다.
+    -> 사용자의 컨트롤을 조정 -->
+
+</html>
