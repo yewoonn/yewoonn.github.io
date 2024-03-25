@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <!-- reactDOM이 놓을 자리 -->
+        <div id="root"></div>
+    </body>
+    <!-- ReactJS : interactive하도록 만들어주는 라이브러리
+    ReactDom : 모든 React 요소를 HTML body에 둘 수 있도록 도와주는 라이브러리 -->
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type = "text/babel">
+        const root = document.getElementById("root");
+        const Title = () => (
+            <h3 id = "title" onMouseEnter={()=> console.log("mouse enter")}>Hello I'm a title</h3>
+        );
+        // 가장 복잡한 방식
+        // const h3 = React.createElement("h3", {
+        //     onMouseEnter: ()=> console.log("mouse enter"),
+        // }, "Hello I am a span"); //괄호 안에 span은 생성하고자 하는 HTML 태그
+        
+        const Button  = () => (
+            <button 
+                style= {{
+                    backgroundColor: "tomato",
+                }} 
+                onClick = {()=>console.log("i'm clicked")}
+                >
+                Click me
+                </button>
+        );
+        // 가장 복잡한 방식
+        // const btn = React.createElement("button", {
+        //     onClick:()=>console.log("i'm clicked"),
+        //     style: {
+        //         backgroundColor: "tomato",
+        //     }
+        // }, "Click me")
+        const Container = () => (
+            <div>
+                <Title/> 
+                <Button/>
+
+            </div>
+            // 자신이 만든 컴포넌트를 다른 컴포넌트에 넣기
+            // = () => ()가 function, return을 
+            // 자신이 만든 컴포넌트의 첫글자는 무조건 대문자로 해야함, 기존의 HTML 태그와의 구분을 위해
+            
+        )  
+            
+        ReactDOM.render(<Container/>, root);//사용자에게 보여줌
+    </script>
+
+    <!-- ReactJS는 Javascript에서 시작하고 HTML에서 끝난다.
+    -> 사용자의 컨트롤을 조정 -->
+
+<!-- 
+    JSX : JS를 확장한 문법 -->
+</html>
