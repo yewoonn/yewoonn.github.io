@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <script src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src = "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src = https://unpkg.com/prop-types@15.7.2/prop-types.js></script>
+    <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type = "text/babel">
+        
+        function Btn({text, fontSize = 16}){
+            return(
+                <button 
+                    style={{
+                        backgroundColor: "tomato",
+                        color:"white",
+                        padding:"10px 20px",
+                        border: 0,
+                        borderRadius: 10,
+                        fontSize,
+                }}>{text}</button>
+            );
+        }
+        
+        //Props의 타입 설명
+        Btn.propTypes = {
+            text:PropTypes.string,
+            fontSize:PropTypes.number.isRequired, //무조건 적어야
+        }
+
+
+        function App(){
+            
+            return(
+                <div>
+                    
+                    <Btn text = "Save Changes" fontSize={18} />
+                    <Btn text = "Continue" />
+
+                </div>
+            );
+            
+        }
+        const root = document.getElementById("root");
+        ReactDOM.render(<App/>, root);
+    </script>
+
+  
+</html>
+
+<!-- props :부모 컴포턴트로부터 자식 컴포넌트로 데이터 전달 -->
+
+<!-- 아래에 text, onClick은 속성(매개 변수)일 뿐 기능이 될 수 없다/단지 prop일 뿐
+<Btn text = {value} onClick={changeValue} />
+<Btn text = "Continue" />
+   -->                  
+
+<!-- 부모가 state 변경이 있을 경우 모든 자식이 re-render된다
+memo를 통해 바뀌는 것만 re-render 될 수 있다. -->
+
