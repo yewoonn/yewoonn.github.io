@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Paste these rules into: Firebase Console → Firestore Database → Rules → Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /visits/{id} {
+      // Anyone visiting the site may log a visit — but only with the exact expected
+      // fields, and only as a brand-new document (no editing/deleting existing data).
+      allow create: if request.resource.data.keys().hasOnly(
+                          ['ts', 'date', 'visitorId', 'section', 'country', 'countryCode', 'city']
+                        )
+                        && request.resource.data.date is string
+                        && request.resource.data.visitorId is string
+                        && request.resource.data.section is string;
+      allow update, delete: if false;
+
+      // ── Read access ───────────────────────────────────────────────────────────
+      // Only the signed-in admin (Google login) may read visit data.
+      // ⚠️ This email MUST match VITE_ADMIN_EMAIL in the app and the Google account you
+      //    sign in with. Change BOTH places if you use a different account.
+      allow read: if request.auth != null
+                  && request.auth.token.email == 'yewoonn02@gmail.com';
+    }
+
+    // Everything else stays locked down.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
