@@ -158,7 +158,7 @@ function AboutSection() {
           </div>
 
           <p className="text-base leading-relaxed font-sans text-foreground">
-            I am an undergraduate researcher in Medical AI, passionate about building interpretable 
+            I am an undergraduate researcher in Biomedical AI, passionate about developing interpretable
             machine learning models for precision medicine.
           </p>
 
@@ -183,11 +183,10 @@ function AboutSection() {
       </div>
 
       <p className="text-base leading-relaxed font-sans text-foreground">
-        I am currently seeking master's or PhD opportunities in Medical AI, BioAI, and computational biology, 
-        where I can further develop interpretable and biologically meaningful AI approaches for healthcare. 
-        Through future research, I hope to help bridge the gap between powerful deep learning models and 
-        clinically meaningful precision medicine. I would be glad to connect with researchers, students, 
-        and mentors who share interests in Medical AI, precision medicine, interpretable machine learning, 
+        I am currently seeking PhD opportunities in Biomedical AI, AI for drug discovery, and Explainable AI.
+        Through future research, I hope to help bridge the gap between powerful deep learning models and
+        clinically meaningful precision medicine. I would be glad to connect with researchers, students,
+        and mentors who share interests in Biomedical AI, AI for drug discovery, Explainable AI,
         drug response prediction, or computational biology.{" "}
         <a href="mailto:yewoonn02@gmail.com" className="text-primary hover:underline underline-offset-2">
           Get in touch.
