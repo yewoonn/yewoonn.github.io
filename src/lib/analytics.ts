@@ -15,6 +15,26 @@ function getVisitorId(): string {
   }
 }
 
+// The site owner marks their own browser (by visiting the admin page) so their
+// visits are never counted. Stored in localStorage, so it persists per browser.
+const OWNER_KEY = "isOwner";
+
+export function markOwner(): void {
+  try {
+    localStorage.setItem(OWNER_KEY, "1");
+  } catch {
+    /* ignore — private mode / storage disabled */
+  }
+}
+
+function isOwner(): boolean {
+  try {
+    return localStorage.getItem(OWNER_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 // "YYYY-MM-DD" in Korea Standard Time, so daily buckets match your local day.
 function todayKST(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
@@ -41,6 +61,7 @@ let logged = false;
 
 export async function logVisit(section: string): Promise<void> {
   if (!firebaseEnabled || !db) return;
+  if (isOwner()) return; // Don't count the owner's own visits.
   if (logged) return;
   logged = true;
 

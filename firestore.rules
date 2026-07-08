@@ -13,7 +13,11 @@ service cloud.firestore {
                         && request.resource.data.date is string
                         && request.resource.data.visitorId is string
                         && request.resource.data.section is string;
-      allow update, delete: if false;
+      // No edits, ever. Only the signed-in admin may delete (used to prune the
+      // owner's own visits from the analytics).
+      allow update: if false;
+      allow delete: if request.auth != null
+                    && request.auth.token.email == 'yewoonn02@gmail.com';
 
       // ── Read access ───────────────────────────────────────────────────────────
       // Only the signed-in admin (Google login) may read visit data.

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore/lite";
+import { collection, deleteDoc, doc, getDocs, limit, orderBy, query } from "firebase/firestore/lite";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -14,12 +14,22 @@ import { ADMIN_EMAIL, app, db, firebaseEnabled } from "@/lib/firebase";
 const auth = app ? getAuth(app) : null;
 
 type Visit = {
+  id: string;
   date: string;
   visitorId: string;
   section: string;
   country: string;
   city: string;
 };
+
+// The visitorId stored in this browser's localStorage — i.e. "this device".
+function thisBrowserVisitorId(): string | null {
+  try {
+    return localStorage.getItem("visitorId");
+  } catch {
+    return null;
+  }
+}
 
 function BarRow({ label, value, max, sub }: { label: string; value: number; max: number; sub?: string }) {
   const pct = max > 0 ? Math.round((value / max) * 100) : 0;
@@ -73,6 +83,7 @@ export default function AdminDashboard() {
   const [authReady, setAuthReady] = useState(false);
   const [visits, setVisits] = useState<Visit[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
   const authorized = Boolean(user && user.email === ADMIN_EMAIL);
 
@@ -94,7 +105,7 @@ export default function AdminDashboard() {
     (async () => {
       try {
         const snap = await getDocs(query(collection(db, "visits"), orderBy("ts", "desc"), limit(10000)));
-        setVisits(snap.docs.map((d) => d.data() as Visit));
+        setVisits(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<Visit, "id">) })));
       } catch (e) {
         setError(String(e));
       }
@@ -113,7 +124,8 @@ export default function AdminDashboard() {
     const byCountry = countBy(visits, (v) => v.country);
     const byCity = countBy(visits, (v) => (v.city ? `${v.city}, ${v.country}` : ""));
     const bySection = countBy(visits, (v) => v.section);
-    return { byDate, uniqueVisitors, uniqueByDate, byCountry, byCity, bySection };
+    const byVisitor = countBy(visits, (v) => v.visitorId);
+    return { byDate, uniqueVisitors, uniqueByDate, byCountry, byCity, bySection, byVisitor };
   }, [visits]);
 
   const signIn = async () => {
@@ -122,6 +134,24 @@ export default function AdminDashboard() {
       await signInWithPopup(auth, new GoogleAuthProvider());
     } catch (e) {
       setError(String(e));
+    }
+  };
+
+  // Delete every visit logged under a given visitorId (used to prune the owner's
+  // own visits). Removes the docs from Firestore, then drops them from local state.
+  const deleteVisitor = async (visitorId: string) => {
+    if (!db || !visits) return;
+    const targets = visits.filter((v) => v.visitorId === visitorId);
+    if (targets.length === 0) return;
+    if (!window.confirm(`이 방문자(${visitorId.slice(0, 8)}…)의 방문 기록 ${targets.length}건을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+    setDeleting(visitorId);
+    try {
+      await Promise.all(targets.map((v) => deleteDoc(doc(db, "visits", v.id))));
+      setVisits((prev) => (prev ? prev.filter((v) => v.visitorId !== visitorId) : prev));
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setDeleting(null);
     }
   };
 
@@ -260,6 +290,34 @@ export default function AdminDashboard() {
             {stats.bySection.map((s) => (
               <BarRow key={s.label} label={s.label} value={s.value} max={stats.bySection[0]?.value ?? 1} />
             ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="font-garamond text-2xl text-foreground mb-4">Visitors</h2>
+          <p className="font-sans text-sm text-muted-foreground mb-4">
+            방문자(브라우저)별 방문 수입니다. 본인 기기의 기록을 삭제하면 위 통계에서 즉시 제외됩니다. 삭제는 되돌릴 수 없습니다.
+          </p>
+          <div className="space-y-1">
+            {stats.byVisitor.map((v) => {
+              const isThisDevice = v.label === thisBrowserVisitorId();
+              return (
+                <div key={v.label} className="grid grid-cols-[1fr_3rem_5rem] items-center gap-3 py-1.5 border-t border-border">
+                  <span className="font-mono text-xs text-foreground truncate" title={v.label}>
+                    {v.label}
+                    {isThisDevice && <span className="ml-2 text-primary">· this device</span>}
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground text-right tabular-nums">{v.value}</span>
+                  <button
+                    onClick={() => deleteVisitor(v.label)}
+                    disabled={deleting !== null}
+                    className="font-mono text-xs text-red-500 hover:text-red-600 disabled:opacity-40 transition-colors text-right"
+                  >
+                    {deleting === v.label ? "삭제 중…" : "delete"}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>

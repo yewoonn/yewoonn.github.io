@@ -3,7 +3,7 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import profilePhoto from "@/imports/Yewon.jpg";
 import overviewPDF from "@/imports/DiSPA_Overview.png";
 import dreamOverview from "@/imports/DREAM_Overview.png";
-import { logVisit } from "@/lib/analytics";
+import { logVisit, markOwner } from "@/lib/analytics";
 
 // Lazy-loaded so the admin bundle (incl. firebase/auth) isn't shipped to normal visitors.
 const AdminDashboard = lazy(() => import("@/app/components/AdminDashboard"));
@@ -28,8 +28,8 @@ const PUBLICATIONS = [
     year: "2026",
     authors: "Han Y., Kim S., Jeong E., Lee S., Yun S., Lim S.",
     title: "DiSPA: Differential Substructure-Pathway Attention for Drug Response Prediction",
-    venue: "Bioinformatics (Transferred from ISMB 2026)",
-    doi: "#",
+    venue: "Bioinformatics, Vol. 42, Issue Supplement_1, July 2026, btag272 (ISMB 2026 Proceedings)",
+    doi: "https://doi.org/10.1093/bioinformatics/btag272",
     award: "BEST PAPER AWARD",
     awardDetail: "Accepted in ISMB 2026 Proceedings Track (Acceptance rate: 16%)",
     presentations: [
@@ -144,7 +144,7 @@ function AboutSection() {
                 { label: "Email", href: "mailto:yewoonn02@gmail.com" },
                 { label: "GitHub", href: "http://github.com/yewoonn" },
                 { label: "LinkedIn", href: "https://www.linkedin.com/in/han-yewon" },
-                { label: "CV (PDF)", href: "https://drive.google.com/file/d/1p-b297cereuH8uUuoOVJTTyhv3ytUvd9/view?usp=sharing" },
+                { label: "CV (PDF)", href: "https://drive.google.com/file/d/1ta6kIAYb7hwDXzKqQ4mfRqlANlNm2J5w/view?usp=sharing" },
               ].map((link) => (
                 <a
                   key={link.label}
@@ -171,8 +171,8 @@ function AboutSection() {
           </p>
         </div>
 
-        <div className="flex-shrink-0">
-          <div className="w-42 md:w-54 overflow-hidden border border-border/40 shadow-sm mt-36">
+        <div className="flex-shrink-0 order-first md:order-none">
+          <div className="w-42 md:w-54 overflow-hidden border border-border/40 shadow-sm md:mt-36">
             <ImageWithFallback
               src={profilePhoto}
               alt="Yewon Han"
@@ -253,8 +253,10 @@ function PublicationsSection({ onPublicationClick }: { onPublicationClick?: (pub
                 )}
                 {pub.type === "paper" && pub.doi && (
                   <>
-                    <a 
+                    <a
                       href={pub.doi}
+                      target="_blank"
+                      rel="noreferrer"
                       className="px-2 py-1 text-xs font-mono border border-border hover:bg-accent hover:text-white transition-colors rounded"
                     >
                       DOI
@@ -312,31 +314,31 @@ function NewsSection() {
 function VitaeSection() {
   const sections = [
     {
+      heading: "Research Interests",
+      items: [
+        { period: "", title: "Biomedical AI · AI for Drug Discovery · Explainable AI", detail: "" },
+      ],
+    },
+    {
       heading: "Education",
       items: [
-        { period: "2022–2026", title: "B.S. in Computer Science Engineering", detail: "Dongguk University, Korea · GPA 4.3/4.5 (Major 4.34/4.5)" },
+        { period: "2022–2026", title: "B.S. in Computer Science Engineering", detail: "Dongguk University, Seoul, Korea · GPA 4.3/4.5 (Major 4.34/4.5)" },
       ],
     },
     {
       heading: "Research Experience",
       items: [
-        { period: "Feb 2023–Present", title: "Undergraduate Research Intern", detail: "PRISM Lab, Dongguk University (Advisor: Prof. Sangsoo Lim)" },
+        { period: "Feb 2024–Present", title: "Researcher, PRISM Lab", detail: "Dongguk University, Seoul, Korea (Advisor: Dr. Sangsoo Lim)" },
       ],
     },
     {
       heading: "Honors & Awards",
       subsections: [
         {
-          subheading: "Conference Awards",
+          subheading: "Presentation Awards",
           items: [
             { period: "2026", title: "Excellence Award for Poster Presentation", detail: "The 22nd KOGO Winter Symposium, Korean Genome Organization (KOGO), Korea" },
-            { period: "2025", title: "Excellence Award for Poster Presentation, Undergraduate Division", detail: "Korea Computer Congress (KCC), KIISE, Korea" },
-          ],
-        },
-        {
-          subheading: "Research Grant",
-          items: [
-            { period: "2025", title: "Research Grant, Creative Independent Research Support Program", detail: "Dongguk University, Korea · Project Title: PathDCA: Pathway-Level Differential Cross Attention for Enhanced Drug Response Prediction" },
+            { period: "2025", title: "Excellence Award for Poster Presentation", detail: "Korea Computer Congress (KCC), KIISE, Korea" },
           ],
         },
         {
@@ -344,17 +346,29 @@ function VitaeSection() {
           items: [
             { period: "2022–2026", title: "Dean's List", detail: "Dongguk University, Korea" },
             { period: "2024–2026", title: "Merit-Based Scholarship", detail: "Dongguk University, Korea" },
-            { period: "2025", title: "IoT-COSS Micro Degree Academic Excellence Scholarship", detail: "Dongguk University, Korea" },
+            { period: "2026", title: "IoT-COSS Micro Degree Academic Excellence Scholarship", detail: "Dongguk University, Korea" },
           ],
         },
-        {
-          subheading: "Others",
-          items: [
-            { period: "2024–2025", title: "Best Mentor Award", detail: "Special Education Mentoring Program, Rehabilitation International Korea" },
-            { period: "2025", title: "Excellence Award", detail: "Intercollegiate Presentation Competition, Korea" },
-            { period: "2025", title: "Excellence Award", detail: "Creative Problem-Solving Project, Dongguk University" },
-          ],
-        },
+      ],
+    },
+    {
+      heading: "Grants",
+      items: [
+        { period: "2025", title: "Creative Independent Research Support Program", detail: "Dongguk University, Korea · Project Title: PathDCA: Pathway-Level Differential Cross Attention for Enhanced Drug Response Prediction" },
+      ],
+    },
+    {
+      heading: "Patents & Software Registration",
+      items: [
+        { period: "2025", title: "Software Registration No. C-2025-040208", detail: "A Drug Response Prediction Framework Using Bidirectional Cross-Attention Based on Biological Pathways, Korea Copyright Commission" },
+        { period: "2025", title: "Korean Patent Application (pending) No. 10-2025-0003146", detail: "System and Method for Predicting Olfactory Characteristics of Odor Mixture Data" },
+        { period: "2025", title: "Korean Patent Application (pending) No. 10-2025-0028145", detail: "Screen Reader-based Kiosk to Improve Accessibility for the Visually Impaired" },
+      ],
+    },
+    {
+      heading: "Teaching",
+      items: [
+        { period: "2024–2026", title: "President & Mentor, HI-SW IT Mentoring Club", detail: "Led portfolio-website and ML workshops; taught Entry-based coding and Google Slides to special-needs classes for 1.5 years; received the Best Mentor Award." },
       ],
     },
     {
@@ -368,16 +382,17 @@ function VitaeSection() {
     {
       heading: "Technical Skills",
       items: [
-        { period: "", title: "Machine Learning", detail: "PyTorch, PyTorch Geometric, scikit-learn" },
-        { period: "", title: "Bioinformatics", detail: "RDKit, scanpy" },
-        { period: "", title: "Data Analysis", detail: "Pandas, Matplotlib, seaborn, NumPy" },
+        { period: "", title: "Programming", detail: "Python, C/C++, Java, SQL" },
+        { period: "", title: "Machine Learning", detail: "PyTorch, PyTorch Geometric, scikit-learn, Pandas, NumPy" },
+        { period: "", title: "Web Development", detail: "HTML, CSS, JavaScript, React" },
+        { period: "", title: "Bioinformatics", detail: "RDKit, Scanpy, Cytoscape" },
       ],
     },
     {
       heading: "Languages",
       items: [
+        { period: "", title: "English", detail: "TOEFL iBT 100 (5.0)" },
         { period: "", title: "Korean", detail: "Native" },
-        { period: "", title: "English", detail: "TOEFL iBT (4.5)" },
       ],
     },
   ];
@@ -386,7 +401,7 @@ function VitaeSection() {
     <div className="space-y-10">
       <p className="text-sm text-muted-foreground font-sans">
         Abbreviated curriculum vitae.{" "}
-        <a href="https://drive.google.com/file/d/1p-b297cereuH8uUuoOVJTTyhv3ytUvd9/view?usp=sharing" target="_blank" rel="noreferrer" className="text-primary hover:underline underline-offset-2">
+        <a href="https://drive.google.com/file/d/1ta6kIAYb7hwDXzKqQ4mfRqlANlNm2J5w/view?usp=sharing" target="_blank" rel="noreferrer" className="text-primary hover:underline underline-offset-2">
           Download full CV (PDF)
         </a>
       </p>
@@ -404,7 +419,7 @@ function VitaeSection() {
                         <span className="font-mono text-xs text-muted-foreground pt-0.5">{item.period}</span>
                         <div>
                           <p className="text-base font-sans font-medium text-foreground leading-snug">{item.title}</p>
-                          <p className="text-sm font-sans text-muted-foreground">{item.detail}</p>
+                          {item.detail && <p className="text-sm font-sans text-muted-foreground">{item.detail}</p>}
                         </div>
                       </div>
                     ))}
@@ -511,9 +526,14 @@ function PublicationDetailSection({ publication }: { publication: typeof PUBLICA
         {!isVOISK && (
           <div className="flex gap-4 mt-8">
             {!isDREAM && (
-              <a href="https://arxiv.org/abs/2601.14346" target="_blank" rel="noreferrer" className="px-4 py-2 border border-border hover:bg-accent hover:text-white transition-colors text-sm font-sans rounded">
-                Preprint
-              </a>
+              <>
+                <a href="https://doi.org/10.1093/bioinformatics/btag272" target="_blank" rel="noreferrer" className="px-4 py-2 border border-border hover:bg-accent hover:text-white transition-colors text-sm font-sans rounded">
+                  Paper (DOI)
+                </a>
+                <a href="https://arxiv.org/abs/2601.14346" target="_blank" rel="noreferrer" className="px-4 py-2 border border-border hover:bg-accent hover:text-white transition-colors text-sm font-sans rounded">
+                  Preprint
+                </a>
+              </>
             )}
             <a href="https://github.com/yewoonn/2024-DREAM-challenge" className="px-4 py-2 border border-border hover:bg-accent hover:text-white transition-colors text-sm font-sans rounded">
               GitHub
@@ -530,7 +550,7 @@ function ContactSection() {
     { label: "Email", value: "yewoonn02@gmail.com", href: "mailto:yewoonn02@gmail.com", desc: "Reach out anytime" },
     { label: "GitHub", value: "github.com/yewoonn", href: "http://github.com/yewoonn", desc: "Code & projects" },
     { label: "LinkedIn", value: "linkedin.com/in/han-yewon", href: "https://www.linkedin.com/in/han-yewon", desc: "Professional profile" },
-    { label: "CV (PDF)", value: "Download CV", href: "https://drive.google.com/file/d/1p-b297cereuH8uUuoOVJTTyhv3ytUvd9/view?usp=sharing", desc: "Full curriculum vitae" },
+    { label: "CV (PDF)", value: "Download CV", href: "https://drive.google.com/file/d/1ta6kIAYb7hwDXzKqQ4mfRqlANlNm2J5w/view?usp=sharing", desc: "Full curriculum vitae" },
   ];
 
   return (
@@ -570,8 +590,10 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      setIsAdmin(hash === ADMIN_SLUG);
-      if (hash && hash !== ADMIN_SLUG) {
+      const admin = hash === ADMIN_SLUG;
+      setIsAdmin(admin);
+      if (admin) markOwner(); // Remember this browser as the owner's, so its visits aren't counted.
+      if (hash && !admin) {
         setActiveSection(hash as Section);
       }
     };
@@ -582,7 +604,10 @@ export default function App() {
 
   // Record one visit per page load (skip the private admin page).
   useEffect(() => {
-    if (window.location.hash.slice(1) === ADMIN_SLUG) return;
+    if (window.location.hash.slice(1) === ADMIN_SLUG) {
+      markOwner(); // Loading the admin page directly also marks this browser as the owner's.
+      return;
+    }
     const entry = window.location.hash.slice(1) || "about";
     logVisit(entry);
   }, []);
